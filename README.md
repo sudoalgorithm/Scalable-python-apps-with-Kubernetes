@@ -56,7 +56,7 @@ To complete this how-to it should take around 45 minutes.
 
 ![alt text](images/image6.png)
 
-> **A Dockerfile is a text document used to indicate to Docker a base image, the Docker settings you need, and a list of commands you would like to have executed to prepare and start your new container.**
+> A Dockerfile is a text document used to indicate to Docker a base image, the Docker settings you need, and a list of commands you would like to have executed to prepare and start your new container.
 
 * In the file, paste this code.
 
@@ -73,7 +73,7 @@ ENTRYPOINT [ "python" ]
 CMD [ "app.py" ]
 ```
 
-* Explaination of above code.
+### Explaination of above code.
 
 ```
 FROM python:2.7
