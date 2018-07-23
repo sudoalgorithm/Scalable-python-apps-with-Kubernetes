@@ -269,13 +269,16 @@ ibmcloud cs region-set us-south
 2. Set the context for the cluster in your CLI.
 
     a. Get the command to set the environment variable and download the Kubernetes configuration files.
+
     ```
     ibmcloud cs cluster-config cluster_kunal
     ```
     b. Set the KUBECONFIG environment variable. Copy the output from the previous command and paste it in your terminal. The command output should look similar to the following.
-    export KUBECONFIG=/Users/$USER/.bluemix/plugins/container-service/clusters/< cluster_name >/< cluster_configuration_file.yaml>
+
+    > export KUBECONFIG=/Users/$USER/.bluemix/plugins/container-service/clusters/< cluster_name >/< cluster_configuration_file.yaml>
 
 3. Verify that you can connect to your cluster by listing your worker nodes.
+
 ```
 kubectl get nodes
 ```
