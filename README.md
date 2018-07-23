@@ -56,58 +56,67 @@ To complete this how-to it should take around 45 minutes.
 
 ![alt text](images/image6.png)
 
-* **A Dockerfile is a text document used to indicate to Docker a base image, the Docker settings you need, and a list of commands you would like to have executed to prepare and start your new container.**
+> **A Dockerfile is a text document used to indicate to Docker a base image, the Docker settings you need, and a list of commands you would like to have executed to prepare and start your new container.**
 
-* In the  paste this code.
+* In the file, paste this code.
 
 ```
 FROM python:2.7
 LABEL maintainer="Kunal Malhotra, kunal.malhotra1@ibm.com"
 RUN apt-get update
 RUN mkdir /app
-COPY . /app
 WORKDIR /app
+COPY . /app
 RUN pip install -r requirements.txt
 EXPOSE 5000
 ENTRYPOINT [ "python" ]
 CMD [ "app.py" ]
 ```
-* Because this Flask Application uses Python 2.7, we want an environment that supports it and already has it installed. Fortunately, DockerHub has an official image that’s installed on top of Ubuntu. In one line, we will have a base Ubuntu image with Python 2.7, virtualenv, and pip. There are tons of images on DockerHub, but if you would like to start off with a fresh Ubuntu image and build on top of it, you could do that.
+
+* Explaination of above code.
+
 ```
 FROM python:2.7
 ```
-* Note the  maintainer and update the Ubuntu package index. The command used is RUN, which is a function that runs the command after it.
+
+* Because this Flask Application uses Python 2.7, we want an environment that supports it and already has it installed. Fortunately, DockerHub has an official image that’s installed on top of Ubuntu. In one line, we will have a base Ubuntu image with Python 2.7, virtualenv, and pip. There are tons of images on DockerHub, but if you would like to start off with a fresh Ubuntu image and build on top of it, you could do that.
+
 ```
 LABEL maintainer="Kunal Malhotra, kunal.malhotra1@ibm.com"
 RUN apt-get update
 ```
 
-* Now it’s time to add the Flask application to the image. For simplicity, copy the application under the /app directory on our Docker Image.
+* Note the  maintainer and update the Ubuntu package index. The command used is RUN, which is a function that runs the command after it.
 
 ```
 RUN mkdir /app
-COPY . /app
 WORKDIR /app
+COPY . /app
 ```
-* **WORKDIR** is essentially a cd in bash, and **COPY** copies a certain directory to the provided directory in an image. ADD is another command that does the same thing as COPY , but it also allows you to add a repository from a URL. Thus, if you want to clone your git repository instead of copying it from your local repository (for staging and production purposes), you can use that. COPY, however, should be used most of the time unless you have a URL.
 
-* Now that we have our repository copied to the image, we will install all of our dependencies, which is defined in requirements.txt
+* Now it’s time to add the Flask application to the image. For simplicity, copy the application under the /app directory on our Docker Image.
+
+* **WORKDIR** is essentially a cd in bash, and **COPY** copies a certain directory to the provided directory in an image. ADD is another command that does the same thing as COPY , but it also allows you to add a repository from a URL. Thus, if you want to clone your git repository instead of copying it from your local repository (for staging and production purposes), you can use that. COPY, however, should be used most of the time unless you have a URL.
 
 ```
 RUN pip install --no-cache-dir -r requirements.txt
 ```
-
-* Expose the port(5000) the Flask application runs on.
+* Now that we have our repository copied to the image, we will install all of our dependencies, which is defined in requirements.txt
 
 ```
 EXPOSE 5000
 ```
-* Specifiy the entrypoint of you application
+* Expose the port(5000) the Flask application runs on.
 
 ```
 ENTRYPOINT [ "python" ]
 CMD [ "app.py" ]
 ```
+* Specifiy the entrypoint of you application
+
+
+
+* Finally
 
 
 
