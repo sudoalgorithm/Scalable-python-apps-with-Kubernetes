@@ -297,5 +297,13 @@ kubectl create -f service.yaml
 
 6. Final Step, go to your brower and ping the public ip of worker node.
 
+## Resources and References
+
+1. [Kubernetes Documentation](https://kubernetes.io/docs/home/?path=users&persona=app-developer&level=foundational)
+2. [A fast and easy Docker tutorial for beginners (video series)](https://medium.freecodecamp.org/docker-quick-start-video-tutorials-1dfc575522a0)
+3. [Deploy a microservices app on IBM Cloud by using Kubernetes](https://www.ibm.com/cloud/garage/tutorials/microservices-app-on-kubernetes/)
+4. [Tutorial: Deploying apps into clusters](https://console.bluemix.net/docs/containers/cs_tutorials_apps.html#cs_apps_tutorial)
+
+
 
 
