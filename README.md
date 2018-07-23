@@ -17,7 +17,11 @@ After completing this how-to, the reader will be able to:
 
 * IBM Cloud account - [sign up](https://console.bluemix.net/registration/) if you don't have an account yet.
 
-* You will require Docker, download the latest version [Docker](https://www.docker.com/get-docker)
+* [Install the IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/get_started.html#getting-started)
+
+* [Install the Docker CLI](https://docs.docker.com/install/)
+
+* [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
 ## Estimated time
 
@@ -143,12 +147,6 @@ docker run -d -p 5000:5000 app
 
 ![alt text](images/image10.png)
 
-* Before you start uploading the image to IBM IBM Cloud Registry, you need to download two prerequisites
-1. [Install the IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/get_started.html#getting-started)
-2. [Install the Docker CLI](https://docs.docker.com/install/)
-
-* Once you download and install the prerequisites, open terminal and start following the below mentioned process step by step.
-
 1. Install the Container Registry plug-in.
 
 ```
@@ -254,11 +252,6 @@ spec:
 * Note that a Service can map an incoming port to any targetPort. By default the targetPort will be set to the same value as the port field. Perhaps more interesting is that targetPort can be a string, referring to the name of a port in the backend Pods. The actual port number assigned to that name can be different in each backend Pod. This offers a lot of flexibility for deploying and evolving your Services. For example, you can change the port number that pods expose in the next version of your backend software, without breaking clients.
 
 ## Deploying Application To Kubernetes
-
-* Before you start deploying the app to kubernetes clusted, you need to download one prerequisites
-[Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-
-* Once you download and install the prerequisites, open terminal and start following the below mentioned process to gain access to your cluster.
 
 1. Target the IBM Cloud Container Service region in which you want to work.
 
