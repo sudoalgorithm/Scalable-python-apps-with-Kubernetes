@@ -189,6 +189,74 @@ ibmcloud cr image-list
 ```
 ![alt text](images/image11.png)
 
+### Creating Configuration Files For Kubernetes
+
+* Once the image is successfully uploaded to private registry, go you to project directory and create two files
+1. deployment.yaml
+2. service.yaml
+
+![alt text](images/image13.png)
+
+* In the deployment.yaml past this code.
+
+```
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: flask-node-deployment
+  labels:
+    app:flasknode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flasknode
+  template:
+    metadata:
+      labels:
+        app: flasknode
+    spec:
+      containers:
+      - name: flasknode
+        image: registry.ng.bluemix.net/flask-node/app
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+
+```
+## Explaination of above code.
+
+1. A Deployment named **flask-node-deployment** is created, indicated by the .metadata.name field.
+2. The Deployment creates one replicated Pods, indicated by the replicas field.
+3. The selector field defines how the Deployment finds which Pods to manage. In this case, we simply select on one label defined in the Pod template (app: flasknode). However, more sophisticated selection rules are possible, as long as the Pod template itself satisfies the rule.
+4. The Pod template’s specification, or .template.spec field, indicates that the Pods run one container, flasknode, which runs the app private registry image.
+5. The Deployment opens port 5000 for use by the Pods.
+
+* After deployment.yaml is done, open service.yaml file and past this code.
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-node-deployment
+spec:
+    selector:
+    app: flasknode
+  ports:
+  - port: 5000
+    targetPort: 5000
+
+```
+## Explaination of above code.
+
+* This specification will create a new Service object named “flask-node-deployment” which targets TCP port 5000 on any Pod with the "app=flasknode" label. This Service will also be assigned an IP address (sometimes called the “cluster IP”), which is used by the service proxies (see below). The Service’s selector will be evaluated continuously and the results will be POSTed to an Endpoints object also named “flask-node-deployment”.
+
+* Note that a Service can map an incoming port to any targetPort. By default the targetPort will be set to the same value as the port field. Perhaps more interesting is that targetPort can be a string, referring to the name of a port in the backend Pods. The actual port number assigned to that name can be different in each backend Pod. This offers a lot of flexibility for deploying and evolving your Services. For example, you can change the port number that pods expose in the next version of your backend software, without breaking clients.
+
+
+
+
+
 
 
 
