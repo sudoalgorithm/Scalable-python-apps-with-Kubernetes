@@ -143,7 +143,7 @@ docker run -d -p 5000:5000 app
 
 ![alt text](images/image10.png)
 
-* Before you start uploading the image to IBM IBM Cloud Registry, you need to two prerequisites
+* Before you start uploading the image to IBM IBM Cloud Registry, you need to download two prerequisites
 1. [Install the IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/get_started.html#getting-started)
 2. [Install the Docker CLI](https://docs.docker.com/install/)
 
@@ -232,7 +232,7 @@ spec:
 4. The Pod template’s specification, or .template.spec field, indicates that the Pods run one container, flasknode, which runs the app private registry image.
 5. The Deployment opens port 5000 for use by the Pods.
 
-* After deployment.yaml is done, open service.yaml file and past this code.
+* After deployment.yaml is done, open **service.yaml** file and past this code.
 
 ```
 apiVersion: v1
@@ -253,26 +253,26 @@ spec:
 
 * Note that a Service can map an incoming port to any targetPort. By default the targetPort will be set to the same value as the port field. Perhaps more interesting is that targetPort can be a string, referring to the name of a port in the backend Pods. The actual port number assigned to that name can be different in each backend Pod. This offers a lot of flexibility for deploying and evolving your Services. For example, you can change the port number that pods expose in the next version of your backend software, without breaking clients.
 
+## Deploying Application To Kubernetes
 
+* Before you start deploying the app to kubernetes clusted, you need to download one prerequisites
+[Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
+* Once you download and install the prerequisites, open terminal and start following the below mentioned process to gain access to your cluster.
 
+1. Target the IBM Cloud Container Service region in which you want to work.
 
+```
+ibmcloud cs region-set us-south
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+2. Set the context for the cluster in your CLI.
+    a. a. Get the command to set the environment variable and download the Kubernetes configuration files.
+    ```
+    ibmcloud cs cluster-config cluster_kunal
+    ```
+    b. Set the KUBECONFIG environment variable. Copy the output from the previous command and paste it in your terminal. The command output should look similar to the following.
+    export KUBECONFIG=/Users/$USER/.bluemix/plugins/container-service/clusters/< cluster_name >/< cluster_configuration_file.yaml>
 
 
 
