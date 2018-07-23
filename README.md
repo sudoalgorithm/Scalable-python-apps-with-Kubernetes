@@ -136,14 +136,58 @@ docker run -d -p 5000:5000 app
 
 ![alt text](images/image9.png)
 
-### Upload the image to IBM Cloud Registry
+### Pushing the image to IBM Cloud Registry
 
 * From you account dashboard, go to **IBM Kubernetes Service**.
 * From the left navigation drawer select **Private Repositories**.
 
 ![alt text](images/image10.png)
 
+* Before you start uploading the image to IBM IBM Cloud Registry, you need to two prerequisites
+1. [Install the IBM Cloud CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/get_started.html#getting-started)
+2. [Install the Docker CLI](https://docs.docker.com/install/)
 
+* Once you download and install the prerequisites, open terminal and start following the below mentioned process step by step.
+
+1. Install the Container Registry plug-in.
+
+```
+ibmcloud plugin install container-registry -r Bluemix
+```
+2. Log in to your IBM Cloud account.
+
+```
+ibmcloud login -a <cloud_foundary_end_point_for_the_region>
+```
+
+3. Choose a name for your first namespace, and create that namespace. Use this namespace for the rest of the Quick Start.
+
+```
+ibmcloud cr namespace-add <namespace>
+```
+4. Log your local Docker daemon into the IBM Cloud Container Registry.
+
+```
+ibmcloud cr login
+```
+5. Choose a repository and tag by which you can identify the image.
+
+```
+docker tag <image_name> <region_url>/<namespace>/<image_name>:<tag>
+```
+6. Push the image.
+
+```
+docker push <region_url>/<namespace>/<image_name>:<tag>
+```
+![alt text](images/image12.png)
+
+7. Verify that your image is in your private registry.
+
+```
+ibmcloud cr image-list
+```
+![alt text](images/image11.png)
 
 
 
