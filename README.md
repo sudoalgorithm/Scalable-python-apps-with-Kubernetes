@@ -224,7 +224,7 @@ spec:
         - containerPort: 5000
 
 ```
-## Explaination of above code.
+### Explaination of above code.
 
 1. A Deployment named **flask-node-deployment** is created, indicated by the .metadata.name field.
 2. The Deployment creates one replicated Pods, indicated by the replicas field.
@@ -247,7 +247,7 @@ spec:
     targetPort: 5000
 
 ```
-## Explaination of above code.
+### Explaination of above code.
 
 * This specification will create a new Service object named “flask-node-deployment” which targets TCP port 5000 on any Pod with the "app=flasknode" label. This Service will also be assigned an IP address (sometimes called the “cluster IP”), which is used by the service proxies (see below). The Service’s selector will be evaluated continuously and the results will be POSTed to an Endpoints object also named “flask-node-deployment”.
 
