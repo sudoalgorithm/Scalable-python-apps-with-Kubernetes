@@ -28,7 +28,7 @@ To complete this how-to it should take around 45 minutes.
 ### Create A Kubernetes Cluster
 
 * Go to your **IBM Cloud Dashboard** and [Sign in](https://console.bluemix.net/dashboard/apps/)
-* Go to **IBM Container Service**
+* Go to **IBM Kubernetes Service**
 
 ![alt text](images/image1.png)
 
@@ -79,14 +79,14 @@ CMD [ "app.py" ]
 FROM python:2.7
 ```
 
-* Because this Flask Application uses Python 2.7, we want an environment that supports it and already has it installed. Fortunately, DockerHub has an official image that’s installed on top of Ubuntu. In one line, we will have a base Ubuntu image with Python 2.7, virtualenv, and pip. There are tons of images on DockerHub, but if you would like to start off with a fresh Ubuntu image and build on top of it, you could do that.
+Because this Flask Application uses Python 2.7, we want an environment that supports it and already has it installed. Fortunately, DockerHub has an official image that’s installed on top of Ubuntu. In one line, we will have a base Ubuntu image with Python 2.7, virtualenv, and pip. There are tons of images on DockerHub, but if you would like to start off with a fresh Ubuntu image and build on top of it, you could do that.
 
 ```
 LABEL maintainer="Kunal Malhotra, kunal.malhotra1@ibm.com"
 RUN apt-get update
 ```
 
-* Note the  maintainer and update the Ubuntu package index. The command used is RUN, which is a function that runs the command after it.
+Note the  maintainer and update the Ubuntu package index. The command used is RUN, which is a function that runs the command after it.
 
 ```
 RUN mkdir /app
@@ -94,9 +94,9 @@ WORKDIR /app
 COPY . /app
 ```
 
-* Now it’s time to add the Flask application to the image. For simplicity, copy the application under the /app directory on our Docker Image.
+Now it’s time to add the Flask application to the image. For simplicity, copy the application under the /app directory on our Docker Image.
 
-* **WORKDIR** is essentially a cd in bash, and **COPY** copies a certain directory to the provided directory in an image. ADD is another command that does the same thing as COPY , but it also allows you to add a repository from a URL. Thus, if you want to clone your git repository instead of copying it from your local repository (for staging and production purposes), you can use that. COPY, however, should be used most of the time unless you have a URL.
+**WORKDIR** is essentially a **cd** in bash, and **COPY** copies a certain directory to the provided directory in an image. **ADD** is another command that does the same thing as COPY , but it also allows you to add a repository from a URL. Thus, if you want to clone your git repository instead of copying it from your local repository (for staging and production purposes), you can use that. COPY, however, should be used most of the time unless you have a URL.
 
 ```
 RUN pip install --no-cache-dir -r requirements.txt
@@ -135,6 +135,16 @@ docker run -d -p 5000:5000 app
 ![alt text](images/image8.png)
 
 ![alt text](images/image9.png)
+
+### Upload the image to IBM Cloud Registry
+
+* From you account dashboard, go to **IBM Kubernetes Service**.
+* From the left navigation drawer select **Private Repositories**.
+
+![alt text](images/image10.png)
+
+
+
 
 
 
