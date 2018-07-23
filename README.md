@@ -112,11 +112,36 @@ EXPOSE 5000
 ENTRYPOINT [ "python" ]
 CMD [ "app.py" ]
 ```
-* Specifiy the entrypoint of you application
+* Specifiy the entrypoint of you application.
+
+### Build image from Dockerfile.
+
+* Open terminal and type this command to build an image from your dockerfile.
+
+```
+docker build -t <image_name>:<tag> .
+```
+![alt text](images/image7.png)
+
+### Run Container Locally And Test.
+
+* After image build is successfull, type
+
+```
+docker run -d -p 5000:5000 app
+```
+* The command will create a container containing all the application code and dependices from the image and run it locally.
+
+![alt text](images/image8.png)
+
+![alt text](images/image9.png)
 
 
 
-* Finally
+
+
+
+
 
 
 
