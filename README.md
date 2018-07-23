@@ -283,5 +283,19 @@ ibmcloud cs region-set us-south
 kubectl get nodes
 ```
 
+4. Create deployment
+
+```
+kubectl create -f deployment.yaml
+```
+
+5. Create service
+
+```
+kubectl create -f service.yaml
+```
+
+6. Final Step, go to your brower and ping the public ip of worker node.
+
 
 
