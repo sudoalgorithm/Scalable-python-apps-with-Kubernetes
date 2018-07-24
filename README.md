@@ -286,6 +286,8 @@ kubectl create -f service.yaml
 ```
 ![alt text](images/image16.png)
 
+![alt text](images/image17.png)
+
 6. Final Step, go to your brower and ping the public ip of worker node.
 
 ![alt text](images/image14.png)
