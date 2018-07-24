@@ -6,7 +6,7 @@
 
 > 2018 - We must adopt kubernetes to solve all problems with docker.
 
-Kubernetes is out there for quite sometime and people are hearing about its greater capabilities, but lot of them haven't started yet. If you are one of them, you are late to party, but that's ok; better late than never. Few developers I spoke with says there is no proper guide available (we can find lot of good articles spread across multiple websites than in a single place) or they fear starting something new. In this how-to, I am aiming to cover step by step instructions on building Containerized Flask Application Using Dockers and deploying it to IBM cloud Kubernetes Service.
+Kubernetes has been out there for quite sometime and people are hearing about its greater capabilities, but a lot of them haven't started using it yet. If you are one of them, you are late to the party, but that's ok; better late than never. A few developers I spoke with say that there is no proper guide available (we can find a lot of good articles spread across multiple websites rather than in a single place) or they fear starting something new. In this how-to, I cover step by step instructions on building a containerized Flask application using Docker and deploying it to IBM Cloud Kubernetes Service.
 
 ## Learning objectives
 After completing this how-to, the reader will be able to:
@@ -25,7 +25,7 @@ After completing this how-to, the reader will be able to:
 
 ## Estimated time
 
-To complete this how-to it should take around 45 minutes.
+It should take around 45 minutes to complete this how-to.
 
 ## Steps
 
@@ -56,7 +56,7 @@ To complete this how-to it should take around 45 minutes.
 
 ### Containerizing Flask Application
 
-* In your project directory create a file with name **Dockerfile**. Note:- File name should be excatly Dockerfile, nothing else.
+* In your project directory create a file with name **Dockerfile**. Note:- File name should be exactly Dockerfile, nothing else.
 
 ![alt text](images/image6.png)
 
@@ -90,7 +90,7 @@ LABEL maintainer="Kunal Malhotra, kunal.malhotra1@ibm.com"
 RUN apt-get update
 ```
 
-Note the  maintainer and update the Ubuntu package index. The command used is RUN, which is a function that runs the command after it.
+Note the maintainer and update the Ubuntu package index. The command used is RUN, which is a function that runs the command after it.
 
 ```
 RUN mkdir /app
@@ -100,7 +100,7 @@ COPY . /app
 
 Now it’s time to add the Flask application to the image. For simplicity, copy the application under the /app directory on our Docker Image.
 
-**WORKDIR** is essentially a **cd** in bash, and **COPY** copies a certain directory to the provided directory in an image. **ADD** is another command that does the same thing as COPY , but it also allows you to add a repository from a URL. Thus, if you want to clone your git repository instead of copying it from your local repository (for staging and production purposes), you can use that. COPY, however, should be used most of the time unless you have a URL.
+**WORKDIR** is essentially a **cd** in bash, and **COPY** copies a certain directory to the provided directory in an image. **ADD** is another command that does the same thing as COPY, but it also allows you to add a repository from a URL. Thus, if you want to clone your git repository instead of copying it from your local repository (for staging and production purposes), you can use that. COPY, however, should be used most of the time unless you have a URL.
 
 ```
 RUN pip install --no-cache-dir -r requirements.txt
@@ -189,7 +189,7 @@ ibmcloud cr image-list
 
 ### Creating Configuration Files For Kubernetes
 
-* Once the image is successfully uploaded to private registry, go you to project directory and create two files
+* Once the image is successfully uploaded to private registry, go to your project directory and create two files
 1. deployment.yaml
 2. service.yaml
 
