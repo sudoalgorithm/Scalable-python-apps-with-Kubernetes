@@ -202,8 +202,6 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: flask-node-deployment
-  labels:
-    app:flasknode
 spec:
   replicas: 1
   selector:
@@ -220,7 +218,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
-
 ```
 ### Explaination of above code.
 
@@ -238,12 +235,11 @@ kind: Service
 metadata:
   name: flask-node-deployment
 spec:
-    selector:
-    app: flasknode
   ports:
   - port: 5000
     targetPort: 5000
-
+  selector:
+    app: flasknode
 ```
 ### Explaination of above code.
 
@@ -281,14 +277,18 @@ kubectl get nodes
 ```
 kubectl create -f deployment.yaml
 ```
+![alt text](images/image15.png)
 
 5. Create service
 
 ```
 kubectl create -f service.yaml
 ```
+![alt text](images/image16.png)
 
 6. Final Step, go to your brower and ping the public ip of worker node.
+
+![alt text](images/image14.png)
 
 ## Resources and References
 
