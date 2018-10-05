@@ -1,4 +1,4 @@
-FROM python:2.7
+FROM python:2.7-onbuild
 LABEL maintainer="Kunal Malhotra, kunal.malhotra1@ibm.com"
 RUN apt-get update
 RUN mkdir /app
