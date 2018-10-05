@@ -6,6 +6,6 @@ spec:
   ports:
   - port: 5000
     targetPort: 5000
-    nodePort: 8000
+    nodePort: 30092
   selector:
     app: flasknode
