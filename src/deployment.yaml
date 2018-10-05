@@ -4,9 +4,6 @@ metadata:
   name: flask-node-deployment
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: flasknode
   template:
     metadata:
       labels:
@@ -16,5 +13,12 @@ spec:
       - name: flasknode
         image: registry.ng.bluemix.net/flask-node/app
         imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 150m
+            memory: 200Mi
+          requests:
+            cpu: 150m
+            memory: 100Mi
         ports:
         - containerPort: 5000
