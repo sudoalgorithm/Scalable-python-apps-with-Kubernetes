@@ -22,7 +22,7 @@ python app.py
 ### Step - 2: Build the Docker image
 
 ```
-docker build -t flask-web-app:latest
+docker build -t flask-web-app:latest .
 ```
 
 ### Step - 3: Build a container from the docker images and run the app
