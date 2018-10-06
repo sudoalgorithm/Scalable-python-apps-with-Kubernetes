@@ -65,7 +65,7 @@ It should take around 45 minutes to complete this how-to.
 * In the file, paste this code.
 
 ```
-FROM python:2.7
+FROM python:2.7-onbuild
 LABEL maintainer="Kunal Malhotra, kunal.malhotra1@ibm.com"
 RUN apt-get update
 RUN mkdir /app
@@ -80,7 +80,7 @@ CMD [ "app.py" ]
 ### Explaination of above code.
 
 ```
-FROM python:2.7
+FROM python:2.7-onbuild
 ```
 
 Because this Flask Application uses Python 2.7, we want an environment that supports it and already has it installed. Fortunately, DockerHub has an official image that’s installed on top of Ubuntu. In one line, we will have a base Ubuntu image with Python 2.7, virtualenv, and pip. There are tons of images on DockerHub, but if you would like to start off with a fresh Ubuntu image and build on top of it, you could do that.
@@ -204,9 +204,6 @@ metadata:
   name: flask-node-deployment
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: flasknode
   template:
     metadata:
       labels:
@@ -218,6 +215,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
+
 ```
 ### Explaination of above code.
 
@@ -235,9 +233,11 @@ kind: Service
 metadata:
   name: flask-node-deployment
 spec:
+  type: NodePort
   ports:
   - port: 5000
     targetPort: 5000
+    nodePort: 30092
   selector:
     app: flasknode
 ```
